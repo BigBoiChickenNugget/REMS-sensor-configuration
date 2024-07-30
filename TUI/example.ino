@@ -8,15 +8,14 @@
 #include <DHT.h>
 
 // SENSOR PIN
-#define DS18B200 1
-#define DS18B201 2
-#define DS18B202 3
-#define DHT0 7
+#define DHT110 1
+#define DHT111 2
+#define DHT112 9
 
 // SENSOR ARRAY
-float DHT[1] = {0};
-float DS18B20[1] = {0};
-
+// float DS18B20[] = {0};
+float DHT11[3] = {0};
+// float DHT22[1] = {0};
 
 // Mac address of Arduino REMS board.
 byte mac[] = {
@@ -96,6 +95,27 @@ void ClientResponse(EthernetClient client) {
     client.println("</body></html>");
 }
 client.println("DHT");
+client.println("DHT");
+client.println("DHT");
+client.println("DHT22");
+client.println("DHT");
+client.println("DHT");
+client.println("DHT");
+client.println("DHT");
+client.println("DHT");
+client.println("DHT");
+client.println("DHT");
+client.println("DS18B20");
+client.println("DS18B20");
+client.println("DHT11");
+client.println("DHT11");
+client.println("DHT11");
+client.println("DS18B20");
+client.println("DHT11");
+client.println("DHT11");
+client.println("DHT11");
+client.println("DS18B20");
+client.println("DS18B20");
 
 //  Function that reads the incoming HTTP request.
 void readRequest(EthernetClient client) {
@@ -145,6 +165,8 @@ void readDHT() {
     dht[1] = dht2.readTemperature();
     dht[2] = dht3.readTemperature();
     dht[3] = dht4.readTemperature();
+
+
 }
 
 void readLM35DZ() {

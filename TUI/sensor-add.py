@@ -21,7 +21,10 @@ def submit(manager: ptg.WindowManager, window: ptg.Window) -> None:
     manager.stop()
 
     # Open the file and read all the lines.
-    file = open("REMS1.ino", "r")
+    file = open("example.ino", "r")
+
+    # Num to store the number of preexisting sensors
+    num = 0
 
     # Loop through all the lines in the file.
     while True:
@@ -32,8 +35,6 @@ def submit(manager: ptg.WindowManager, window: ptg.Window) -> None:
         # Add the line to the finalFile list.
         finalFile.append(line)
 
-        # Num to store the number of preexisting sensors
-        num = 0
 
         # If the line contains "SENSOR PIN" then add the new sensor's pin to the file.
         if "SENSOR PIN" in line:
@@ -90,13 +91,25 @@ def submit(manager: ptg.WindowManager, window: ptg.Window) -> None:
                 
                 finalFile.append(line)
 
+        if "DHT SETUP" in line and OUTPUT["Sensor:"] == "DHT11":
+            while True:
+                line = file.readline()
+
+                if line == "\n":
+                    line = "dht.setup(" + OUTPUT["Pin:"] + ");\n"
+                    finalFile.append(line)
+                    finalFile.append("\n")
+                    break;
+
+                finalFile.append(line)
+
 
         # If we reach the end of the file then break the loop.
         if line == "":
             break
 
     file.close()
-    file = open("REMS1.ino", "w")
+    file = open("example.ino", "w")
     file.writelines(finalFile)
 
 
