@@ -1,0 +1,11 @@
+##[pylyzer] succeed /home/ta/projects/REMS-sensor-configuration/webserver/sensor.py 1722385128 925
+.Sensor: ClassType
+.Sensor.pin: Never
+.Sensor.name: Never
+.Sensor.board: Never
+.Sensor.ID: Never
+.Sensor.__call__: (board: Obj, name: Obj, ID: Obj, pin: Obj) -> sensor.Sensor
+.Sensor.add: (self: sensor.Sensor) -> Never
+
+.number_of_sensors: () -> Nat
+.add_sensor: Never

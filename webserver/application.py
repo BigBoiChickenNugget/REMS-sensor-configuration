@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+from sensor import Sensor
 
 app = Flask(__name__)
 
@@ -11,12 +12,12 @@ def index():
 @app.route('/add-sensor', methods=['GET', 'POST'])
 def add_sensor():
     if request.method == 'POST':
-        board = request.form['microcontroller']
+        board = request.form['board']
         sensor = request.form['sensor-name']
         pin = request.form['pin']
 
-        with open('sensors.txt', 'a') as file:
-            file.write(f'{board} {sensor} {pin}\n')
+        sensor = Sensor(board, sensor, pin)
+        sensor.add()
 
         return redirect(url_for('index'))
 
