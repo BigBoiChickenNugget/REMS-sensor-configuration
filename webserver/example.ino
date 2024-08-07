@@ -8,7 +8,7 @@
 #include <DHT.h>
 
 // SENSOR PIN
-const int DS18B20_PINS[] = { 15 , 21 , 19 };
+const int DS18B20_PINS[] = { 21 , 19 , 3 ,  };
 const int DHT11_PINS[] = { 16 , 25 };
 
 // Mac address of Arduino REMS board.

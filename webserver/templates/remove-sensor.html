@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Sensor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .sensor-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sensor-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .sensor-name {
+            flex: 1;
+        }
+        .remove-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: red;
+            color: white;
+            text-align: center;
+            line-height: 24px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Remove Sensor</h1>
+    <ul class="sensor-list">
+        {% for sensor in sensors %}
+            <li class="sensor-item">
+                <span class="sensor-name">{{ sensor.name }} (Board: {{ sensor.board }}, Pin: {{ sensor.pin }})</span>
+                <div class="remove-btn" data-board="{{ sensor.board }}" data-name="{{ sensor.name }}" data-pin="{{ sensor.pin }}">X</div>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.remove-btn').forEach(button => {
+                button.addEventListener('click', async (event) => {
+                    const board = event.target.getAttribute('data-board');
+                    const name = event.target.getAttribute('data-name');
+                    const pin = event.target.getAttribute('data-pin');
+
+                    if (confirm('Are you sure you want to remove this sensor?')) {
+                        const response = await fetch('/remove-sensor', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            },
+                            body: new URLSearchParams({
+                                'board': board,
+                                'sensor-name': name,
+                                'pin': pin
+                            })
+                        });
+
+                        if (response.ok) {
+                            // Optionally remove the sensor item from the UI
+                            event.target.parentElement.remove();
+                        } else {
+                            alert('Failed to remove the sensor.');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
