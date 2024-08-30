@@ -1,0 +1,14 @@
+##[pylyzer] failed /home/ta/projects/REMS-sensor-configuration/webserver/sensor.py 1723224536 3595
+.Sensor: ClassType
+.Sensor.pin: Never
+.Sensor.board: Never
+.Sensor.name: Never
+.Sensor.__call__: (board: Obj, name: Obj, pin: Obj) -> sensor.Sensor
+.Sensor.add: (self: sensor.Sensor) -> Never
+.Sensor.remove: (self: sensor.Sensor) -> Never
+.Sensor.__str__: (self: sensor.Sensor) -> Never
+
+.number_of_sensors: () -> Nat
+.add_sensor: (sensor: sensor.Sensor) -> Never
+.remove_sensor: (sensor: sensor.Sensor) -> Never
+.get_sensors: (board: Obj) -> List!(sensor.Sensor, 1)

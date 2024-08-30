@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Remove Sensor</title>
@@ -41,6 +43,12 @@
     </style>
 </head>
 <body>
+	<!--add space between button and below content to make site look better-->
+	<div style="margin-bottom: 20px;">
+		<a href={{ url_for('add_sensor') }} class="btn btn-primary">Add Sensor</a>
+		<a href={{ url_for('index') }} class="btn btn-secondary">Home</a>
+	</div>
+
     <h1>Remove Sensor</h1>
     <ul class="sensor-list">
         {% for sensor in sensors %}

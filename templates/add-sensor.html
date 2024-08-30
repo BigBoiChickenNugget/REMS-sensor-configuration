@@ -41,6 +41,12 @@
 	</style>
 </head>
 <body>
+
+	<div style="margin-bottom: 20px;">
+		<a href={{ url_for('remove_sensor') }} class="btn btn-primary">Remove Sensor</a>
+		<a href={{ url_for('index') }} class="btn btn-secondary">Home</a>
+	</div>
+
 	<div class="container">
 		<div class="card">
 			<div class="card-header text-center">
@@ -50,15 +56,18 @@
 				<form action="{{ url_for('add_sensor') }}" method="POST">
 					<div class="form-group">
 						<label for="sensor-name">Sensor Name</label>
-						<input type="text" id="sensor-name" name="sensor-name" class="form-control" required>
+						<select name="sensor-name" id="sensor-name" class="form-control" required>
+							<option value="DS18B20">DS18B20</option>
+							<option value="DHT11">DHT11</option>
+						</select>
 					</div>
 
 					<div class="form-group">
 						<label for="board">Board</label>
 						<select name="board" id="board" class="form-control" required>
-							<option value="arduino">REMS1 (MEGA)</option>
-							<option value="raspberry-pi">REMS2 (MEGA)</option>
-							<option value="raspberry-pi">REMS3 (ESP32)</option>
+							<option value="REMS1">REMS1 (MEGA)</option>
+							<option value="REMS2">REMS2 (MEGA)</option>
+							<option value="REMS3">REMS3 (ESP32)</option>
 						</select>
 					</div>
 

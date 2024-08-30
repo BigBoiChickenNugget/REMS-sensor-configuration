@@ -7,11 +7,11 @@
 #include <DallasTemperature.h>
 #include <DHT.h>
 
-dht11 = []
-ds18b20 = []
-// SENSOR CONFIGURATION
+// SENSOR PIN
+const int DS18B20_PINS[] = { 0 };
+const int DHT11_PINS[] = { 0 };
 
-
+// DS18B20 SETUP
 
 // Mac address of Arduino REMS board.
 byte mac[] = {
